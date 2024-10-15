@@ -24,7 +24,12 @@ spec:
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: {{ .Release.Name }}-config
+                name: {{ .Release.Name }}-config-main
+          env:
+            - name: VERSION
+              value: "v1"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
 
 ---
 {{- if .Values.canary.enabled }}
@@ -54,5 +59,10 @@ spec:
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: {{ .Release.Name }}-config
+                name: {{ .Release.Name }}-config-canary
+          env:
+            - name: VERSION
+              value: "v2"
+          resources:
+            {{- toYaml .Values.canary.resources | nindent 12 }}
 {{- end }}

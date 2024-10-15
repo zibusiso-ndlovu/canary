@@ -8,24 +8,25 @@ image:
 service:
   type: ClusterIP
   port: 80
+  targetPort: 5000
 
 ingress:
   enabled: true
-  hosts:
-    - host: canary-demo.local
-      paths:
-        - path: /
-          pathType: Prefix
+  host: "canary-demo.local"
 
 canary:
-  enabled: false
+  enabled: true
   replicaCount: 1
   image:
-    tag: "1.0.1"
+    tag: "v2"
 
 config:
-  appColor: "white"
-  welcomeMessage: "Welcome to Upcommerce.com!"
+  main:
+    appColor: "white"
+    welcomeMessage: "Welcome to Upcommerce.com!"
+  canary:
+    appColor: "green"
+    welcomeMessage: "Welcome to Upcommerce.com Canary!"
 
 serviceMonitor:
   enabled: true

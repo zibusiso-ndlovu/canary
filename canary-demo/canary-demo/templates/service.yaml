@@ -5,11 +5,28 @@ metadata:
   labels:
     app: {{ .Release.Name }}
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
   selector:
     app: {{ .Release.Name }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: http
+
+---
+{{- if .Values.canary.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-canary
+  labels:
+    app: {{ .Release.Name }}-canary
+spec:
+  selector:
+    app: {{ .Release.Name }}-canary
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: http
+{{- end }}
