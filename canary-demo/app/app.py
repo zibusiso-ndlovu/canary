@@ -4,8 +4,8 @@ import random
 from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 
 app = Flask(__name__)
-version = os.environ.get('VERSION', 'v1')
-app_color = os.environ.get('APP_COLOR', 'green')
+version = os.environ.get('VERSION', 'v3')
+app_color = os.environ.get('APP_COLOR', 'yellow')
 welcome_message = os.environ.get('WELCOME_MESSAGE', 'Welcome! You are currently viewing Upcommerce.com')
 
 request_count = Counter('http_requests_total', 'Total HTTP Requests', ['version'])
