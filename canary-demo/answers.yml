@@ -40,7 +40,7 @@ prometheus_metrics:
 rollback_test:
   previous_revision: 2 #TODO: Enter the revision number before rollback
   rollback_command_used: helm rollback canary-demo 1 -n canary-demo #TODO: Enter the helm rollback command you used
-  time_to_rollback_seconds: #TODO: Enter how long the rollback took to complete
+  time_to_rollback_seconds:  0m0.177s #TODO: Enter how long the rollback took to complete
 
 # Error Budget Calculation (based on 99.9% SLO)
 error_budget:

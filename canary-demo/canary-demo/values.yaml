@@ -18,7 +18,7 @@ canary:
   enabled: true
   replicaCount: 1
   image:
-    tag: "v3"
+    tag: "v2"
 
 config:
   main:
